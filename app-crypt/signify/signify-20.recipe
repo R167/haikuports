@@ -1,0 +1,44 @@
+SUMMARY="OpenBSD tool to sign and verify signatures on files"
+DESCRIPTION="Signify is an OpenBSD tool to sign and verify signatures on files. \
+This is a portable version which uses libbsd."
+HOMEPAGE="http://www.kokkonen.net/tjko/projects.html"
+COPYRIGHT="2014-2016 Adrian Perez"
+LICENSE="
+	BSD (3-clause)
+	Public Domain
+	MIT
+	ISC
+	"
+REVISION="1"
+SOURCE_URI="https://github.com/aperezdc/signify/archive/v$portVersion.tar.gz"
+CHECKSUM_SHA256="99dc0f4a3c2a80c854f45410ee4832b0c7fb537ed3bbc0cc4f5435b9d614be22"
+
+ARCHITECTURES="x86_gcc2 x86"
+
+PROVIDES="
+	signify = $portVersion
+	cmd:signify = $portVersion
+	"
+REQUIRES="
+	haiku
+	lib:libbsd
+	"
+
+BUILD_REQUIRES="
+	haiku_devel
+	devel:libbsd
+	"
+BUILD_PREREQUIRES="
+	cmd:gcc
+	cmd:make
+	"
+
+BUILD()
+{
+	make
+}
+
+INSTALL()
+{
+	make install PREFIX=$prefix
+}
