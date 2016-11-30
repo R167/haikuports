@@ -21,20 +21,27 @@ PROVIDES="
 	"
 REQUIRES="
 	haiku
-	lib:libbsd
 	"
 
 BUILD_REQUIRES="
 	haiku_devel
-	devel:libbsd
 	"
 BUILD_PREREQUIRES="
 	cmd:gcc
 	cmd:make
+	cmd:automake
+	cmd:autoconf
+	cmd:awk
+	cmd:pkg_config
+	cmd:libtool
+	cmd:git
 	"
 
 BUILD()
 {
+	export LDFLAGS=-lbsd
+	export CFLAGS=-D_BSD_SOURCE
+	env
 	make
 }
 
